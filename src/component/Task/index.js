@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { movePositionLeft, movePositionRight, toggleModifyTask, deleteTask, onModifyInputValueChange, handleModifySubmit, handleTaskDrapping } from '../../actions';
+import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
 
 import "./task.scss"
 
@@ -30,7 +31,7 @@ export const Task = ({
         <li id={idTask} className="task" draggable="true" onDrag={(event) => handleDragStart(event)} onClick={(event) => console.log(event.clientY)} >
             <div div className="container__button" >
                 {/* button pour suprrimer */}
-                <button className="task__button__delete" type="button" onClick={() => startDeleteTask(idTask)}>✖</button>
+                <button className="task__button__delete" type="button" onClick={() => startDeleteTask(idTask)}><AiFillCloseCircle /></button>
             </div >
 
             <div className="container__text">
@@ -42,7 +43,7 @@ export const Task = ({
                         <form type="submit" onSubmit={handleSubmit}>
                             <input className="task__modifyInput" placeholder={nameTask} value={modifyInputValue} onChange={handleModifyInputValueChange}>
                             </input>
-                            <button type="submit" className="task__button__check" >✔</button>
+                            <button type="submit" className="task__button__check" ><AiFillCheckCircle /></button>
                         </form>
                     )
                 }

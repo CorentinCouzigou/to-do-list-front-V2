@@ -12,37 +12,37 @@ export const Form = ({
   handleSendMessageErrorTrue,
   handleSendMessageErrorFalse,
 }) => {
-    const handleOnSubmit = (event) => {
-      // preventDefault pour éviter le rechargement de la page lors du submit de l'event
-      event.preventDefault();
-      //condition pour vérifier si l'utilisateur rentre au moins un caractère pour sa tâche
-      if (event.target[0].value.length === 0){
-        handleSendMessageErrorTrue();
-      }else {
-        handleSendMessageErrorFalse();
-        const idList = listOfTasks.map((task) => task.id);
-        const maxId = Math.max(...idList);
-        handleNewTask({
-          // ici si jamais l'utilisateur n'a pas de task dans sa list l'id de la nouvelle task sera égale à 1
-          id: maxId === -Infinity ? 1 : maxId + 1 ,
-          label: `${event.target[0].value}`,
-          position: 1,
-          inputModify: false,
-        });
+  const handleOnSubmit = (event) => {
+    // preventDefault pour éviter le rechargement de la page lors du submit de l'event
+    event.preventDefault();
+    //condition pour vérifier si l'utilisateur rentre au moins un caractère pour sa tâche
+    if (event.target[0].value.length === 0) {
+      handleSendMessageErrorTrue();
+    } else {
+      handleSendMessageErrorFalse();
+      const idList = listOfTasks.map((task) => task.id);
+      const maxId = Math.max(...idList);
+      handleNewTask({
+        // ici si jamais l'utilisateur n'a pas de task dans sa list l'id de la nouvelle task sera égale à 1
+        id: maxId === -Infinity ? 1 : maxId + 1,
+        label: `${event.target[0].value}`,
+        status: "new",
+        inputModify: false,
+      });
     }
-    }
+  }
 
-return (
-  <div className="form__container">
-    <form className="form" onSubmit={handleOnSubmit}>
-    <input type="text" className="form__input" placeholder="Add new task" onChange={handleOnChange}/>
-    <button className="form__button" type="submit">
-Validate</button>
-  </form>
-  {errorMessage && <span className="form__error">You must at least write one character</span>}
-  </div>
+  return (
+    <div className="form__container">
+      <form className="form" onSubmit={handleOnSubmit}>
+        <input type="text" className="form__input" placeholder="Add new task" onChange={handleOnChange} />
+        <button className="form__button" type="submit">
+          Validate</button>
+      </form>
+      {errorMessage && <span className="form__error">You must at least write one character</span>}
+    </div>
 
-);
+  );
 }
 Form.propTypes = {
   handleOnChange: PropTypes.func.isRequired,
@@ -57,25 +57,25 @@ const mapStateToProps = (state) => ({
   listOfTasks: state.listTaks,
   newTaskValue: state.newTaskValue,
   errorMessage: state.errorMessage,
-  });
-  
+});
+
 const mapDispatchToProps = (dispatch) => ({
-    handleOnChange: (event) => {
-      const action = changeInputValue(event.target.value);
-      dispatch(action);
-    },
-    handleNewTask: (newTask) => {
-      const action = addNewTask(newTask);
-      dispatch(action);
-    },
-    handleSendMessageErrorTrue: () => {
-      const action = sendMessageErrorTrue();
-      dispatch(action);
-    },
-    handleSendMessageErrorFalse: () => {
-      const action = sendMessageErrorFalse();
-      dispatch(action);
-    }
-  });
+  handleOnChange: (event) => {
+    const action = changeInputValue(event.target.value);
+    dispatch(action);
+  },
+  handleNewTask: (newTask) => {
+    const action = addNewTask(newTask);
+    dispatch(action);
+  },
+  handleSendMessageErrorTrue: () => {
+    const action = sendMessageErrorTrue();
+    dispatch(action);
+  },
+  handleSendMessageErrorFalse: () => {
+    const action = sendMessageErrorFalse();
+    dispatch(action);
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Task from '../Task';
 import { handleChangePositionTaskInColumn } from '../../actions/index';
 
+
+
 import "./column.scss"
 
 export const Column = ({ id, name, datas, idTaskDragging, changePositionTaskInColumn }) => {
