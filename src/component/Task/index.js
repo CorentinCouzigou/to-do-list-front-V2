@@ -27,7 +27,7 @@ export const Task = ({
     }
     return (
         // les différents boutons sont affichés en fonction de l'état du state et donc des actions de l'utilisateur
-        <li id={idTask} className="task" draggable="true" onDrag={(event) => handleDragStart(event)} >
+        <li id={idTask} className="task" draggable="true" onDrag={(event) => handleDragStart(event)} onClick={(event) => console.log(event.clientY)} >
             <div div className="container__button" >
                 {/* button changer de colonne vers la droite (position -1)*/}
                 {idColumn > 1 && <button type="button" className="task__button" onClick={() => changePositionLeft(idTask)}>&larr;</button>}

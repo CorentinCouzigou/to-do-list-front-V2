@@ -6,7 +6,7 @@ import { handleChangePositionTaskInColumn } from '../../actions/index';
 
 import "./column.scss"
 
-export const Column = ({ id, name, datas, idTaskDrapping, changePositionTaskInColumn }) => {
+export const Column = ({ id, name, datas, idTaskDragging, changePositionTaskInColumn }) => {
     useEffect(() => {
     }, [datas]);
     const columnRef = useRef();
@@ -15,19 +15,18 @@ export const Column = ({ id, name, datas, idTaskDrapping, changePositionTaskInCo
     const tasksFilter = datas.filter(data => data.position === id);
 
     const handleDragOver = (event) => {
+        event.stopPropagation();
         event.preventDefault();
-        // changePositionTaskInColumn(idTaskDrapping, event.target.id);
-    }
-    function getDragAfterElement(event) {
-        // console.log("eventt", event.target.id);
-        changePositionTaskInColumn(idTaskDrapping, event.target.id);
 
+    }
+    function drop(event) {
+        changePositionTaskInColumn(idTaskDragging, event.currentTarget.id);
     }
 
     return (
-        <div ref={columnRef} className="column" onDrop={(event) => getDragAfterElement(event)} id={id} onDragOver={(event) => handleDragOver(event)} >
+        <div ref={columnRef} className="column" onDrop={(event) => drop(event)} id={id} onDragOver={(event) => handleDragOver(event)} >
             <h2 className="todo__title">{name}</h2>
-            <ul>
+            <ul >
                 {/* on map sur les tasks filtrées pour qu'à chaque task on créé un composant Task et on y passe en props task.label */}
                 {tasksFilter.map((task) => (
                     <Task ref={taskRef}
@@ -44,13 +43,13 @@ export const Column = ({ id, name, datas, idTaskDrapping, changePositionTaskInCo
 
 Column.propTypes = {
     id: PropTypes.number.isRequired,
-    idTaskDrapping: PropTypes.number.isRequired,
+    idTaskDragging: PropTypes.number.isRequired,
     changePositionTaskInColumn: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
     datas: state.listTaks,
-    idTaskDrapping: state.taskDragging,
+    idTaskDragging: state.taskDragging,
 });
 
 const mapDispatchToProps = (dispatch) => ({
