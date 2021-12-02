@@ -1,0 +1,119 @@
+.task{
+    color: white;
+    background-color: #152039;
+    border-radius: 2rem;
+    margin-bottom: 0.2rem;
+    padding: 0.6rem;
+    font-size: 1rem;
+    display: flex;
+    &__modifyInput{
+        width: 90%;
+        margin-left: 0.2rem;
+    }
+    &__button{
+        width:50%; 
+        height:100%;
+        margin: 0rem 0.4rem;
+        padding: 0.3rem 0.5rem;
+        border: none;
+        background-color: orange;
+        font-weight: bold;
+        border-radius: 50%;
+        &:hover{
+            background-color: white;
+            color: orange;
+            cursor: pointer;
+        }
+        &__modify{
+            width:50%; 
+            height:100%;
+            border: none;
+            border-radius: 50%;
+            &:hover{
+                background-color: yellow;
+                cursor: pointer;
+            }
+        }
+        &__check{
+            width:50%; 
+            height:100%;
+            margin-top: 0.2rem;
+            border: none;
+            border-radius: 50%;
+            &:hover{
+                background-color:green;
+                cursor: pointer;
+            }
+        }
+        &__delete{
+            width:50%; 
+            height:100%;
+            border: none;
+            border-radius: 50%;
+            &:hover{
+                background-color:red;
+                cursor: pointer;
+            }
+        }
+  
+    }
+    &__text {
+        width: 90%;
+        word-wrap: break-word;   
+   
+    }
+}
+.container__button{
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.container__text{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0rem 0.4rem;
+    width: 70%;
+    margin: 0.2rem 0.8rem;
+    letter-spacing: 0.1rem;
+}
+@media (max-width: 1450px) {
+.task__button {
+    margin: 0.0rem 0.1rem;
+}
+}
+@media (max-width: 1260px) { 
+    .task{
+        height: 40% ;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.6rem;
+        &__button {
+            &__text{
+                font-size: 0.9rem;
+            }
+        }
+    }
+    .task__button{
+        margin: 0rem 0.4rem;
+    }
+    .container__text{
+        padding: 0.2rem 0.4rem;
+        margin: 0.2rem 0.4rem;
+    }
+}
+@media (max-width: 900px) { 
+    .task__text{
+        font-size: 0.9rem;
+    }
+    
+    }
+@media (max-width: 560px) { 
+.task__text{
+    font-size: 0.9rem;
+}
+
+}

@@ -1,0 +1,29 @@
+.form__container{
+    display:flex;
+    margin-left: 5rem;
+
+}
+.form {
+    &__input{
+        padding: 0.6rem 1rem;
+        border: 2px solid orange;
+        &:focus{
+            color: orange
+        }
+    }
+    &__button{
+        border: none;
+        padding: 0.6rem 0.8rem;
+        margin-left: 0.2rem;
+        border: 2px solid orange;
+        &:hover{
+            background-color: orange;
+            cursor: pointer;
+        }
+    }
+    &__error{
+        color:orange;
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
+    }
+}
