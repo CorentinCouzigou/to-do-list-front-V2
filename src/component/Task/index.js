@@ -29,9 +29,6 @@ export const Task = ({
         // les différents boutons sont affichés en fonction de l'état du state et donc des actions de l'utilisateur
         <li id={idTask} className="task" draggable="true" onDrag={(event) => handleDragStart(event)} onClick={(event) => console.log(event.clientY)} >
             <div div className="container__button" >
-                {/* button changer de colonne vers la droite (position -1)*/}
-                {idColumn > 1 && <button type="button" className="task__button" onClick={() => changePositionLeft(idTask)}>&larr;</button>}
-
                 {/* button pour suprrimer */}
                 <button className="task__button__delete" type="button" onClick={() => startDeleteTask(idTask)}>✖</button>
             </div >
@@ -55,8 +52,6 @@ export const Task = ({
                 {/* button pour activer la modification du nom de la task*/}
                 {!inputModifyId && <button type="button" className="task__button__modify" onClick={() => changeToggleModifyTask(idTask)} >🖉</button>}
 
-                {/* button changer de colonne vers la droite (position +1)*/}
-                {idColumn < 4 && <button type="button" className="task__button" onClick={() => changePositionRigth(idTask)}>&rarr;</button>}
             </div>
         </li>
     )

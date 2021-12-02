@@ -52,11 +52,11 @@ const reducer = (state = initialState, {
         taskDragging: payload,
       };
     case HANDLE_CHANGE_POSITION_TASK_IN_COLUMN: {
-      // console.log('idtask', idTask);
-      // console.log('idcolumn', idColumn)
+      console.log('idtask', idTask);
+      console.log('idcolumn', idColumn)
       const modifiedTask = state.listTaks.map((task) => {
         if (task.id === idTask) {
-          return { ...task, position: +idColumn }
+          return { ...task, status: idColumn }
         }
         else return task
       });

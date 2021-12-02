@@ -22,10 +22,10 @@ export const App = ({ startGetData, list }) => {
       <Form />
       <main>
         <div className="todo__containder">
-          <Column id={1} name={'NEW'} />
-          <Column id={2} name={'IN PROGRESS'} />
-          <Column id={3} name={'IN REVIEW'} />
-          <Column id={4} name={'DONE'} />
+          <Column name={'NEW'} />
+          <Column name={'IN PROGRESS'} />
+          <Column name={'IN REVIEW'} />
+          <Column name={'DONE'} />
         </div>
       </main>
     </div>
