@@ -1,6 +1,4 @@
 export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
-export const CHANGE_POSITION_RIGHT = 'CHANGE_POSITION_RIGHT';
-export const CHANGE_POSITION_LEFT = 'CHANGE_POSITION_LEFT';
 export const ADD_NEW_TASK = 'ADD_NEW_TASK';
 export const TOGGLE_MODIFY_TASK = 'TOGGLE_MODIFY_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
@@ -41,15 +39,6 @@ export const changeInputValue = (value) => ({
   value,
 });
 
-export const movePositionRight = (idTask) => ({
-  type: CHANGE_POSITION_RIGHT,
-  idTask,
-});
-export const movePositionLeft = (idTask) => ({
-  type: CHANGE_POSITION_LEFT,
-  idTask,
-});
-
 export const addNewTask = (newTask) => ({
   type: ADD_NEW_TASK,
   newTask,
@@ -79,5 +68,5 @@ export const onModifyInputValueChange = (inputValue) => ({
 })
 
 export const handleModifySubmit = () => ({
-  type: HANDLE_MODIFY_SUBMIT
+  type: HANDLE_MODIFY_SUBMIT,
 })

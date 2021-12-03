@@ -1,14 +1,6 @@
-import {
-  changePositionRightCurrentTask,
-  changePositionLeftCurrentTask,
-  findOneTaskForDelete,
-  findOneTaskForModify,
-} from '../selectors';
 
 import {
   CHANGE_INPUT_VALUE,
-  CHANGE_POSITION_RIGHT,
-  CHANGE_POSITION_LEFT,
   ADD_NEW_TASK,
   TOGGLE_MODIFY_TASK,
   DELETE_TASK,
@@ -19,7 +11,6 @@ import {
   HANDLE_MODIFY_SUBMIT,
   HANDLE_TASKDRAPPING,
   HANDLE_CHANGE_POSITION_TASK_IN_COLUMN,
-  newData
 } from '../actions';
 
 const initialState = {
@@ -38,6 +29,8 @@ const reducer = (state = initialState, {
   payload,
   inputValue,
   idColumn,
+  modifiedValue,
+  idTaskModified,
   idTaskDrapping
 }) => {
   switch (type) {
@@ -52,16 +45,12 @@ const reducer = (state = initialState, {
         taskDragging: payload,
       };
     case HANDLE_CHANGE_POSITION_TASK_IN_COLUMN: {
-      console.log('idtask', idTask);
-      console.log('idcolumn', idColumn)
       const modifiedTask = state.listTaks.map((task) => {
         if (task.id === idTask) {
           return { ...task, status: idColumn }
         }
         else return task
       });
-      // console.log("modifiedTask", modifiedTask);
-      newData();
       return {
         ...state,
         listTaks: modifiedTask,
@@ -70,18 +59,7 @@ const reducer = (state = initialState, {
     case CHANGE_INPUT_VALUE:
       return {
         ...state,
-        newTask: value,
-      };
-
-    case CHANGE_POSITION_RIGHT:
-      return {
-        ...state,
-        listTaks: [...changePositionRightCurrentTask(state.listTaks, idTask)]
-      };
-    case CHANGE_POSITION_LEFT:
-      return {
-        ...state,
-        listTaks: [...changePositionLeftCurrentTask(state.listTaks, idTask)]
+        newTaskValue: value,
       };
     case ADD_NEW_TASK:
       return {
@@ -89,11 +67,21 @@ const reducer = (state = initialState, {
         listTaks: [...state.listTaks, newTask],
         newTaskValue: '',
       };
-    case DELETE_TASK:
+    case DELETE_TASK: {
+      console.log('idDelete', idTask);
+      const newListOfTasks = []
+      const listOfTasksWithoutIdTaskDelete = state.listTaks.map((task) => {
+        if (task.id !== idTask) {
+          //obligé de push dans un nouveau tableau pour éviter un élement undefined
+          return newListOfTasks.push(task)
+        }
+        else { }
+      });
       return {
         ...state,
-        listTaks: [...findOneTaskForDelete(state.listTaks, idTask)]
+        listTaks: newListOfTasks,
       };
+    };
     case TOGGLE_MODIFY_TASK:
       return {
         ...state,
@@ -114,13 +102,19 @@ const reducer = (state = initialState, {
         ...state,
         modifyInputValue: inputValue,
       };
-    case HANDLE_MODIFY_SUBMIT:
+    case HANDLE_MODIFY_SUBMIT: {
+      const listOfTasksWithTaskModified = state.listTaks.map((task) => {
+        if (task.id === state.inputModifyId) {
+          return { ...task, label: state.modifyInputValue }
+        }
+        else return task
+      });
       return {
         ...state,
-        listTaks: [...findOneTaskForModify(state.listTaks, state.inputModifyId, state.modifyInputValue)],
+        listTaks: listOfTasksWithTaskModified,
         inputModifyId: 0,
-        modifyInputValue: '',
       };
+    }
     default:
       // de base on retourne le state courant
       return state;

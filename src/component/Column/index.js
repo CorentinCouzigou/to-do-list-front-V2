@@ -8,7 +8,7 @@ import { handleChangePositionTaskInColumn } from '../../actions/index';
 
 import "./column.scss"
 
-export const Column = ({ id, name, datas, idTaskDragging, changePositionTaskInColumn }) => {
+export const Column = ({ id, name, datas, idTaskDragging, changePositionTaskInColumn, handleNEwData }) => {
     useEffect(() => {
     }, [datas]);
 
@@ -22,6 +22,7 @@ export const Column = ({ id, name, datas, idTaskDragging, changePositionTaskInCo
     }
     function drop(event) {
         changePositionTaskInColumn(idTaskDragging, event.currentTarget.getAttribute('name').toLowerCase());
+
     }
 
     return (
@@ -46,6 +47,7 @@ Column.propTypes = {
     id: PropTypes.number.isRequired,
     idTaskDragging: PropTypes.number.isRequired,
     changePositionTaskInColumn: PropTypes.func.isRequired,
+
 }
 
 const mapStateToProps = (state) => ({
@@ -57,7 +59,8 @@ const mapDispatchToProps = (dispatch) => ({
     changePositionTaskInColumn: (idTask, idColumn) => {
         const action = handleChangePositionTaskInColumn(idTask, idColumn);
         dispatch(action);
-    }
+    },
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Column);

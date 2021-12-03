@@ -11,6 +11,7 @@ export const Form = ({
   errorMessage,
   handleSendMessageErrorTrue,
   handleSendMessageErrorFalse,
+  newTaskValue,
 }) => {
   const handleOnSubmit = (event) => {
     // preventDefault pour éviter le rechargement de la page lors du submit de l'event
@@ -27,7 +28,6 @@ export const Form = ({
         id: maxId === -Infinity ? 1 : maxId + 1,
         label: `${event.target[0].value}`,
         status: "new",
-        inputModify: false,
       });
     }
   }
@@ -35,7 +35,7 @@ export const Form = ({
   return (
     <div className="form__container">
       <form className="form" onSubmit={handleOnSubmit}>
-        <input type="text" className="form__input" placeholder="Add new task" onChange={handleOnChange} />
+        <input value={newTaskValue} type="text" className="form__input" placeholder="Add new task" onChange={(event) => handleOnChange(event)} />
         <button className="form__button" type="submit">
           Validate</button>
       </form>
@@ -45,6 +45,7 @@ export const Form = ({
   );
 }
 Form.propTypes = {
+  newTaskValue: PropTypes.string.isRequired,
   handleOnChange: PropTypes.func.isRequired,
   listOfTasks: PropTypes.array.isRequired,
   handleNewTask: PropTypes.func.isRequired,

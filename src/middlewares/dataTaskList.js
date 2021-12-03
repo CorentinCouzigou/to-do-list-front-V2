@@ -20,11 +20,13 @@ const dataTasks = (store) => (next) => (action) => {
             break;
         }
         case NEW_DATA: {
+            console.log('hello du middleware');
             const getData = async () => {
                 try {
+                    console.log('hello du middleware');
                     const state = store.getState();
                     const response = await api.post('/', {
-                        newTaskList: state.list
+                        newTaskList: state.listTaks
                     });
 
                 }

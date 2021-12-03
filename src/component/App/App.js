@@ -1,19 +1,23 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getData } from '../../actions';
+import { getData, newData } from '../../actions';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import Column from '../Column';
 import Form from '../Form';
 
-
+//styles app
 import './App.scss';
 
-export const App = ({ startGetData, list }) => {
+export const App = ({ startGetData, listOfTasks, sendNewDataForServer }) => {
   //lancement de l'action pour avoir les data au premier rendu de l'application
   useEffect(() => {
     startGetData();
   }, []);
+
+  useEffect(() => {
+    sendNewDataForServer();
+  }, [listOfTasks]);
 
   return (
     // chaque column correspond à un liste de todo. Les todos sont classés dans ces colonnes pour définir leurs status.
@@ -34,16 +38,21 @@ export const App = ({ startGetData, list }) => {
 
 App.propTypes = {
   startGetData: PropTypes.func.isRequired,
-  list: PropTypes.array.isRequired,
+  listOfTasks: PropTypes.array.isRequired,
+  sendNewDataForServer: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-  list: state.listTaks,
+  listOfTasks: state.listTaks,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   startGetData: () => {
     const action = getData();
+    dispatch(action);
+  },
+  sendNewDataForServer: () => {
+    const action = newData();
     dispatch(action);
   },
 });

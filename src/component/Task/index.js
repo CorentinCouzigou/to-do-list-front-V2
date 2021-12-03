@@ -1,31 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { movePositionLeft, movePositionRight, toggleModifyTask, deleteTask, onModifyInputValueChange, handleModifySubmit, handleTaskDrapping } from '../../actions';
+import { toggleModifyTask, deleteTask, onModifyInputValueChange, handleModifySubmit, handleTaskDrapping } from '../../actions';
 import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
 
 import "./task.scss"
 
 export const Task = ({
-    idColumn,
     idTask,
     nameTask,
-    changePositionLeft,
-    changePositionRigth,
     inputModifyId,
     changeToggleModifyTask,
     startDeleteTask,
     modifyInputValue,
     handleModifyInputValueChange,
-    handleSubmit,
-    changeTaskDrapping
+    changeTaskDrapping,
+    handleSubmit
 }) => {
     const handleDragStart = (event) => {
         changeTaskDrapping(+event.target.id);
+    };
+    const startSubmit = (event) => {
+        event.preventDefault();
+        handleSubmit();
     }
-    const drop = (event) => {
-        changeTaskDrapping(+event.target.id);
-    }
+
     return (
         // les différents boutons sont affichés en fonction de l'état du state et donc des actions de l'utilisateur
         <li id={idTask} className="task" draggable="true" onDrag={(event) => handleDragStart(event)} onClick={(event) => console.log(event.clientY)} >
@@ -37,10 +36,11 @@ export const Task = ({
             <div className="container__text">
                 {/* Nom de la task*/}
                 {inputModifyId !== idTask ?
-                    <p className="task__text"> {nameTask}</p>
+                    <p className="task__text">{nameTask}</p>
                     :
+                    //formulaire de modification de la tâche
                     (
-                        <form type="submit" onSubmit={handleSubmit}>
+                        <form id={idTask} type="submit" onSubmit={(event) => startSubmit(event)}>
                             <input className="task__modifyInput" placeholder={nameTask} value={modifyInputValue} onChange={handleModifyInputValueChange}>
                             </input>
                             <button type="submit" className="task__button__check" ><AiFillCheckCircle /></button>
@@ -73,18 +73,10 @@ Task.propTypes = {
 
 const mapStateToProps = (state) => ({
     inputModifyId: state.inputModifyId,
-    modifyInputValue: state.modifyInputValue
+    modifyInputValue: state.modifyInputValue,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    changePositionRigth: (idTask) => {
-        const action = movePositionRight(idTask)
-        dispatch(action);
-    },
-    changePositionLeft: (idTask) => {
-        const action = movePositionLeft(idTask)
-        dispatch(action);
-    },
     changeToggleModifyTask: (idTask) => {
         const action = toggleModifyTask(idTask);
         dispatch(action);
