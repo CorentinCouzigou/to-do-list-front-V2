@@ -2,7 +2,6 @@
     padding: 0.4rem;
     color: orange;
     width: 30rem;
-
     max-height: 100%;
     border-left: 1px solid white; 
     padding: 1rem;
@@ -14,8 +13,12 @@
 }
 @media screen and(max-width: 1150px){
     .column{
-        width:30%;
-        
+        min-width:35%;
+    }
+}
+@media screen and(max-width: 850px){
+    .column{
+        min-width: 85%;
     }
 }
 .todo__title{
