@@ -40,7 +40,7 @@ export const Task = ({
                     :
                     //formulaire de modification de la tâche
                     (
-                        <form id={idTask} type="submit" onSubmit={(event) => startSubmit(event)}>
+                        <form id={idTask} type="task__formSubmit" onSubmit={(event) => startSubmit(event)}>
                             <input className="task__modifyInput" placeholder={nameTask} value={modifyInputValue} onChange={handleModifyInputValueChange}>
                             </input>
                             <button type="submit" className="task__button__check" ><AiFillCheckCircle /></button>
