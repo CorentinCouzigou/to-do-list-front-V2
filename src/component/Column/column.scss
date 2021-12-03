@@ -1,12 +1,11 @@
 .column{
     padding: 0.4rem;
     color: orange;
-    width: 30%;
+    width: 30rem;
     min-height: 100%;
     border-left: 1px solid white; 
     padding: 1rem;
     overflow: auto;
-
     &:last-child{
         border-right: 1px solid white;
     }

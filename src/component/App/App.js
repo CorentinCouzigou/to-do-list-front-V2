@@ -25,7 +25,7 @@ export const App = ({ startGetData, listOfTasks, sendNewDataForServer }) => {
       <Header />
       <Form />
       <main>
-        <div className="todo__containder">
+        <div className="todo__container">
           <Column name={'NEW'} />
           <Column name={'IN PROGRESS'} />
           <Column name={'IN REVIEW'} />

@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 .container{
+  
     max-width: 100vw;
-    overflow: auto;
+    height: 100vh;
+    overflow: hidden;
     font-family: 'Caveat', cursive;
     background-color: #3b73ed;
 }
@@ -10,17 +12,23 @@ main {
     align-items: center;
     justify-content: center;
 }
-.todo__containder{
-    height: 75vh;
+.todo__container{
+    margin-top:1rem;
     width: 96%;
+    height: 34rem;
     display: flex;
     padding: 1rem;
-    overflow: hidden;
-}
-.todo {
-
+    // overflow: hidden;
+    overflow-x: auto;
 
 }
+@media screen and (max-width: 1000px){
+    .todo__container{
+        width:2000px;
+
+    
+    };
+};
 .todo::-webkit-scrollbar {
     width: 9px;
   }
@@ -34,17 +42,3 @@ main {
     border: 3px solid orange; 
 }
 
-@media (max-width: 680px){
-.todo {
-    padding: 0;
-    height: 100vh;
-    overflow: auto;
-}
-.todo__container{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-}

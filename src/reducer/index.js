@@ -104,7 +104,7 @@ const reducer = (state = initialState, {
       };
     case HANDLE_MODIFY_SUBMIT: {
       const listOfTasksWithTaskModified = state.listTaks.map((task) => {
-        if (task.id === state.inputModifyId) {
+        if (task.id === state.inputModifyId && state.modifyInputValue.length > 0) {
           return { ...task, label: state.modifyInputValue }
         }
         else return task
