@@ -28,6 +28,7 @@ export const Form = ({
         id: maxId === -Infinity ? 1 : maxId + 1,
         label: `${event.target[0].value}`,
         status: "new",
+        description: "",
       });
     }
   }

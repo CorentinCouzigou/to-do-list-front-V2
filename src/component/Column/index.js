@@ -36,6 +36,7 @@ export const Column = ({ id, name, datas, idTaskDragging, changePositionTaskInCo
                         idColumn={id}
                         key={task.id}
                         idTask={task.id}
+                        description={task.description}
                     />
                 ))}
             </ul>

@@ -11,6 +11,11 @@ import {
   HANDLE_MODIFY_SUBMIT,
   HANDLE_TASKDRAPPING,
   HANDLE_CHANGE_POSITION_TASK_IN_COLUMN,
+  HANDLE_TOGGLE_DESCRIPTION,
+  SET_TASK_DESCRIPTION,
+  HANDLE_MODIFY_INPUT_DESCRIPTION,
+  TOGGLE_MODIFY_DESCRITPION,
+  SUBMIT_MODIFY_DESCRITPION
 } from '../actions';
 
 const initialState = {
@@ -20,6 +25,13 @@ const initialState = {
   inputModifyId: 0,
   modifyInputValue: '',
   taskDragging: 0,
+  toggleModal: false,
+  idTaskDescription: 0,
+  nameTaskDescription: '',
+  taskDescription: '',
+  idTaskWhenModifiedDescription: 0,
+  inputModifyDescription: '',
+  toggleModifyDescription: false,
 }
 const reducer = (state = initialState, {
   type,
@@ -27,6 +39,8 @@ const reducer = (state = initialState, {
   idTask,
   newTask,
   payload,
+  nameTask,
+  description,
   inputValue,
   idColumn,
   modifiedValue,
@@ -43,6 +57,28 @@ const reducer = (state = initialState, {
       return {
         ...state,
         taskDragging: payload,
+      };
+    case HANDLE_TOGGLE_DESCRIPTION:
+      return {
+        ...state,
+        toggleModal: !state.toggleModal,
+      };
+    case TOGGLE_MODIFY_DESCRITPION:
+      return {
+        ...state,
+        toggleModifyDescription: !state.toggleModifyDescription,
+      };
+    case HANDLE_MODIFY_INPUT_DESCRIPTION:
+      return {
+        ...state,
+        inputModifyDescription: inputValue,
+      };
+    case SET_TASK_DESCRIPTION:
+      return {
+        ...state,
+        idTaskDescription: idTask,
+        nameTaskDescription: nameTask,
+        taskDescription: description,
       };
     case HANDLE_CHANGE_POSITION_TASK_IN_COLUMN: {
       const modifiedTask = state.listTaks.map((task) => {
@@ -113,6 +149,19 @@ const reducer = (state = initialState, {
         ...state,
         listTaks: listOfTasksWithTaskModified,
         inputModifyId: 0,
+      };
+    };
+    case SUBMIT_MODIFY_DESCRITPION: {
+      const listOfTasksWithTaskModified = state.listTaks.map((task) => {
+        if (task.id === state.idTaskDescription && state.inputModifyDescription.length > 0) {
+          return { ...task, description: state.inputModifyDescription }
+        }
+        else return task
+      });
+      return {
+        ...state,
+        listTaks: listOfTasksWithTaskModified,
+        toggleModifyDescription: false,
       };
     }
     default:

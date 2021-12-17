@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { toggleModifyTask, deleteTask, onModifyInputValueChange, handleModifySubmit, handleTaskDrapping } from '../../actions';
-import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
+import { toggleModifyTask, deleteTask, onModifyInputValueChange, handleModifySubmit, handleTaskDrapping, handleToggleDescription, setTaskDescription } from '../../actions';
+import { AiFillCloseCircle, AiFillCheckCircle, } from "react-icons/ai";
+import { MdOutlineDescription } from "react-icons/md";
 
 import "./task.scss"
 
@@ -15,7 +16,10 @@ export const Task = ({
     modifyInputValue,
     handleModifyInputValueChange,
     changeTaskDrapping,
-    handleSubmit
+    handleSubmit,
+    handleToggleDescription,
+    setTaskDescription,
+    description
 }) => {
     const handleDragStart = (event) => {
         changeTaskDrapping(+event.target.id);
@@ -30,7 +34,7 @@ export const Task = ({
         <li id={idTask} className="task" draggable="true" onDrag={(event) => handleDragStart(event)} onClick={(event) => console.log(event.clientY)} >
             <div div className="container__button" >
                 {/* button pour suprrimer */}
-                <button className="task__button__delete" type="button" onClick={() => startDeleteTask(idTask)}><AiFillCloseCircle /></button>
+                <button title="Remove task" className="task__button__delete" type="button" onClick={() => startDeleteTask(idTask)}><AiFillCloseCircle /></button>
             </div >
 
             <div className="container__text">
@@ -40,21 +44,21 @@ export const Task = ({
                     :
                     //formulaire de modification de la tâche
                     (
-                        <form id={idTask} type="task__formSubmit" onSubmit={(event) => startSubmit(event)}>
+                        <form id={idTask} className="task__formSubmit" onSubmit={(event) => startSubmit(event)}>
                             <input className="task__modifyInput" placeholder={nameTask} value={modifyInputValue} onChange={handleModifyInputValueChange}>
                             </input>
-                            <button type="submit" className="task__button__check" ><AiFillCheckCircle /></button>
+                            <button title="Validate modification" type="submit" className="task__button__check" ><AiFillCheckCircle /></button>
                         </form>
                     )
                 }
             </div>
-
+            <button title="Show description" className="description" type="button" onClick={() => { return (setTaskDescription(idTask, nameTask, description), handleToggleDescription()) }}><MdOutlineDescription /></button>
             <div className="container__button">
                 {/* button pour activer la modification du nom de la task*/}
-                {!inputModifyId && <button type="button" className="task__button__modify" onClick={() => changeToggleModifyTask(idTask)} >🖉</button>}
+                {!inputModifyId && <button type="button" className="task__button__modify" onClick={() => changeToggleModifyTask(idTask)} title="Modify this task" >🖉</button>}
 
             </div>
-        </li>
+        </li >
     )
 }
 
@@ -68,6 +72,8 @@ Task.propTypes = {
     changeToggleModifyTask: PropTypes.func.isRequired,
     startDeleteTask: PropTypes.func.isRequired,
     changeTaskDrapping: PropTypes.func.isRequired,
+    handleToggleDescription: PropTypes.func.isRequired,
+    setTaskDescription: PropTypes.func.isRequired,
 };
 
 
@@ -95,6 +101,14 @@ const mapDispatchToProps = (dispatch) => ({
     },
     changeTaskDrapping: (idTask) => {
         const action = handleTaskDrapping(idTask)
+        dispatch(action)
+    },
+    handleToggleDescription: () => {
+        const action = handleToggleDescription()
+        dispatch(action)
+    },
+    setTaskDescription: (idTask, nameTask, description) => {
+        const action = setTaskDescription(idTask, nameTask, description);
         dispatch(action)
     }
 

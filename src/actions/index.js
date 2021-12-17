@@ -11,13 +11,44 @@ export const HANDLE_MODIFY_SUBMIT = 'HANDLE_MODIFY_SUBMIT';
 export const HANDLE_TASKDRAPPING = 'HANDLE_TASKDRAPPING';
 export const HANDLE_CHANGE_POSITION_TASK_IN_COLUMN = 'HANDLE_CHANGE_POSITION_TASK_IN_COLUMN';
 export const NEW_DATA = "NEW_DATA";
+export const HANDLE_TOGGLE_DESCRIPTION = "hANDLE_TOGGLE_DESCRIPTION";
+export const SET_TASK_DESCRIPTION = "SET_TASK_DESCRIPTION";
+export const HANDLE_MODIFY_INPUT_DESCRIPTION = "HANDLE_MODIFY_INPUT_DESCRIPTION";
+export const TOGGLE_MODIFY_DESCRITPION = "TOGGLE_MODIFY_DESCRITPION";
+export const SUBMIT_MODIFY_DESCRITPION = "SUBMIT_MODIFY_DESCRITPION";
 
 export const getData = () => ({
   type: GET_DATA,
 });
+
+export const handleModifyInputDescription = (inputValue) => ({
+  type: HANDLE_MODIFY_INPUT_DESCRIPTION,
+  inputValue
+});
+
+export const submitModifyDescription = () => ({
+  type: SUBMIT_MODIFY_DESCRITPION,
+});
+
+export const toggleModifyDescription = () => ({
+  type: TOGGLE_MODIFY_DESCRITPION,
+});
+
+export const handleToggleDescription = () => ({
+  type: HANDLE_TOGGLE_DESCRIPTION,
+});
+
+export const setTaskDescription = (idTask, nameTask, description) => ({
+  type: SET_TASK_DESCRIPTION,
+  idTask,
+  nameTask,
+  description
+});
+
+
 export const newData = () => ({
   type: NEW_DATA
-})
+});
 
 export const handleTaskDrapping = (payload) => ({
   type: HANDLE_TASKDRAPPING,

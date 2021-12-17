@@ -34,6 +34,81 @@ main {
     padding: 1rem;
     overflow-x: visible;
     overflow-y: hidden;
+    postition:relative;
+}
+
+.modal{
+    position:relative;
+    color:orange;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    font-size: 2rem;
+    & p{
+        margin-top: 2rem;
+        color:white;
+    }
+    &__container{
+    position: absolute;
+    top:25%;
+    left:25%;
+    width:50%; 
+    height:60vh;
+    background-color: #3b73ed;
+    box-shadow: 1px 1px 12px black;
+    padding:1rem;
+    }
+    &__check{
+        position:absolute;
+        top: 3rem;
+        right: 5px;
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        color: green;
+        &:hover{
+        transform: scale(1.4);
+        cursor: pointer;
+        }
+    }
+    &__close{
+        position:absolute;
+        top: 5px;
+        right: 5px;
+        color: red;
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        color:red;
+        &:hover{
+            transform: scale(1.4);
+            cursor: pointer;
+        }
+    }
+    &__modify{
+        position:absolute;
+        top: 3rem;
+        right: 5px;
+        color: orange;
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    
+    }
+
 }
 
 .todo::-webkit-scrollbar {

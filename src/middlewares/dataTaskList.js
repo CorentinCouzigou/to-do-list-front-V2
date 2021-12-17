@@ -10,6 +10,7 @@ const dataTasks = (store) => (next) => (action) => {
                 try {
                     // requete api sur http://localhost:3001/ pour avoir toutes les exemples de tasks
                     const response = await api.get('/');
+                    console.log("respons", response.data);
                     store.dispatch(ChangeDataTask(response.data));
                 }
                 catch (error) {
@@ -19,6 +20,7 @@ const dataTasks = (store) => (next) => (action) => {
             getData();
             break;
         }
+
         case NEW_DATA: {
             console.log('hello du middleware');
             const getData = async () => {
