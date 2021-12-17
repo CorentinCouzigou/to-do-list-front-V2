@@ -58,7 +58,7 @@ export const Task = ({
                 {!inputModifyId && <button type="button" className="task__button__modify" onClick={() => changeToggleModifyTask(idTask)} title="Modify this task" >🖉</button>}
 
             </div>
-        </li >
+        </li>
     )
 }
 

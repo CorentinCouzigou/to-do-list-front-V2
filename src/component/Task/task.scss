@@ -11,6 +11,8 @@
     justify-content: space-between;
     &__formSubmit{
         position:relative;
+        display: flex;
+        width: 12rem;
     }
     &__modifyInput{
         width: 100%;
@@ -31,9 +33,7 @@
             }
         }
         &__check{
-            position:absolute;
-            top: 0.2rem;
-            right: -3rem;
+            margin-left: 0.5rem;
             background: none;
             color: inherit;
             border: none;

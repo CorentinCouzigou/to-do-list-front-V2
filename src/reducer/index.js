@@ -161,6 +161,7 @@ const reducer = (state = initialState, {
       return {
         ...state,
         listTaks: listOfTasksWithTaskModified,
+        inputModifyDescription: '',
         toggleModifyDescription: false,
       };
     }

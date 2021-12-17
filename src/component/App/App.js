@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getData, newData, handleToggleDescription, handleModifyInputDescription, setIdTaskModifyDescription, toggleModifyDescription, submitModifyDescription } from '../../actions';
+import { getData, newData, handleToggleDescription, handleModifyInputDescription,toggleModifyDescription, submitModifyDescription } from '../../actions';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import Column from '../Column';
@@ -10,7 +10,7 @@ import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
 //styles app
 import './App.scss';
 
-export const App = ({ startGetData, listOfTasks, sendNewDataForServer, toggleModal, nameTask, description, handleToggleDescription, idTask, idTaskWhenModifiedDescription, modifyInputValue, handleModifyInputValueChange, toggleModifyDescription, HandleToggleModifyDescription, submitModifyDescription }) => {
+export const App = ({ startGetData, listOfTasks, sendNewDataForServer, toggleModal, nameTask, description, handleToggleDescription, idTask, modifyInputValue, handleModifyInputValueChange, toggleModifyDescription, HandleToggleModifyDescription, submitModifyDescription }) => {
   //lancement de l'action pour avoir les data au premier rendu de l'application
   useEffect(() => {
     startGetData();
@@ -19,12 +19,12 @@ export const App = ({ startGetData, listOfTasks, sendNewDataForServer, toggleMod
   useEffect(() => {
     sendNewDataForServer();
   }, [listOfTasks]);
-  console.log('nametaks', nameTask);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     submitModifyDescription();
   }
+  
   return (
     // chaque column correspond à un liste de todo. Les todos sont classés dans ces colonnes pour définir leurs status.
     <div className="container">

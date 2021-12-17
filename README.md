@@ -30,7 +30,5 @@ Après avoir cloné le repo: </br>
 ****
 ## Résultats:
 ### Front =>
-![alt text](./todolist.png "Front Result")
+![](todolist.png)
 
-### Back =>
-![alt text](./toDoListBACK.png "Back Result")
